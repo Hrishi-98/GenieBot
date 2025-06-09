@@ -1,27 +1,81 @@
-# Chatbot
+🤖 **Gemini ChatBot – Angular + Google Generative AI**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
+A minimalist chatbot UI built with Angular standalone components and integrated with the Gemini API (Google Generative AI). This project demonstrates sending prompts to the Gemini model, displaying AI responses in a styled chat interface, and handling real-time message updates via RxJS.
 
-## Development server
+✨ **Features**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+    🧠 Text Generation using Gemini 2.0 Flash model (Generative AI)
+    
+    📨 Two-way chat UI with roles (User & Bot)
+    
+    🔄 Real-time updates using BehaviorSubject and RxJS
+    
+    🎨 Skeleton loading UI while waiting for AI response
+    
+    ⚡️ Built with Angular standalone components
 
-## Code scaffolding
+🧱 **Project Structure**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    src/app/
+    ├── app.component.ts         # Main component with chat logic
+    ├── app.component.html       # Chat UI layout
+    ├── gemini-service.service.ts# Gemini API integration
+    ├── skeleton/                # Skeleton loader component
+    
+🧠 **How It Works**
 
-## Build
+    🗂 Gemini Service (gemini-service.service.ts)
+        Uses GoogleGenerativeAI SDK
+    
+        Sends prompt to gemini-2.0-flash model
+    
+        Publishes user and bot messages via BehaviorSubject
+    
+    💬 Chat UI (app.component.html)
+        Renders chat history using *ngFor
+        
+        Displays user or bot icon based on from field
+        
+        Calls sendData() on button click or Enter key
+    
+    ⌛ Loading State
+        Shows app-skeleton when a message is in progress
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+🚀 **How to Run**
 
-## Running unit tests
+    ⚠️ Make sure your Google AI API key is valid and usage enabled.
+    
+    # 1. Install dependencies
+    npm install
+    
+    # 2. Run Angular app
+    ng serve
+    
+    # 3. Open in browser
+    http://localhost:4200
+    
+🔑 **Configuration**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Update the API key inside gemini-service.service.ts:
 
-## Running end-to-end tests
+    this.generativeAI = new GoogleGenerativeAI('YOUR_API_KEY_HERE');
+    
+📌 **Notes**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    Currently using gemini-2.0-flash model — adjust as needed.
+    
+    No persistence — chat is lost on refresh (RxJS-based only).
+    
+    Designed as a learning/demo project; production enhancements recommended (e.g. token safety, input validation, etc.).
 
-## Further help
+🧩 Improvements You Can Try
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+    Add timestamp to messages
+    
+    Save chat history in localStorage
+    
+    Use Angular Material or Tailwind for cleaner UI
+    
+    Integrate markdown parsing for richer responses
+    
+    Add typing animation while AI responds
